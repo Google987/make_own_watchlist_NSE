@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>WATCHLIST</h1>
+    <input type="text">
+    <button onclick="add_a_share()">Add</button>
+    <div id="main">
+        {% for row in data %}
+            <h1 id="{{row.symbol}}">{{ row.companyName }} - &#8377; {{ row.lastPrice }}</h1>
+        {% endfor %}
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+    <script type="text/javascript" src="{{url_for('static', filename='main.js')}}"></script>
+</body>
+</html>
