@@ -1,5 +1,4 @@
 from nsetools import Nse
-from pprint import pprint # just for neatness of display
 import redis
 import functools
 
@@ -8,7 +7,7 @@ codes = set()
 
 
 def getRedisConnection():
-    redis_db = redis.StrictRedis(host="localhost", port=6379, db=0, password='Holidif!1238899', decode_responses=True)
+    redis_db = redis.StrictRedis(host="localhost", port=6379, db=0, password='your-password', decode_responses=True)
     return redis_db
 
 
@@ -42,5 +41,4 @@ def get_quotes():
 if __name__ == "__main__":
     print(nse)
     # quote = nse.get_quote('tcs') # it's ok to use both upper or lower case for codes.
-    # pprint(quote)
-    pprint(nse.get_index_list())
+    
