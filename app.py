@@ -12,6 +12,7 @@ def getRedisConnection():
 
 
 def save_in_redis(code):
+    global codes
     if(nse.is_valid_code(code)):
         if code not in codes:
             codes.add(code)
@@ -23,6 +24,17 @@ def save_in_redis(code):
 
 def get_quote(code):
     return nse.get_quote(code)
+
+
+def delete_in_redis(code):
+    global codes
+    # print(codes)
+    codes.remove(code)
+    redis_db = getRedisConnection()
+    if(len(codes) > 0):
+        redis_db.set("WATCHLIST_NSE_CODES", functools.reduce(lambda x,y:x+","+y, codes))
+    else : redis_db.set("WATCHLIST_NSE_CODES", "")
+    return 'done'
 
 
 def get_quotes():

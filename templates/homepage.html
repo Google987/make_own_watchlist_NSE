@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
     <h1>WATCHLIST</h1>
-    <input type="text">
+    <input type="text" placeholder="Enter NSE Code">
     <button onclick="add_a_share()">Add</button>
     <div id="main">
         {% for row in data %}
-            <h1 id="{{row.symbol}}">{{ row.companyName }} - &#8377; {{ row.lastPrice }}</h1>
+            <div style="display: flex;">
+                <h3 id="{{row.symbol}}">{{ row.companyName }} - &#8377; {{ row.lastPrice }}</h3>
+                <button class="delete" onclick="delete_a_share($(this))" name="{{row.symbol}}">Delete</button>
+            </div>
         {% endfor %}
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

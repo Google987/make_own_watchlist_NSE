@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from app import get_quote, get_quotes
-from app import save_in_redis
+from app import get_quote, get_quotes, save_in_redis, delete_in_redis
 
 app = Flask(__name__)
 
@@ -22,5 +21,9 @@ def add():
 def refresh():
     return jsonify(get_quotes())
 
+@app.route("/delete")
+def delete():
+    return delete_in_redis(request.args.get('code'))
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=50000)
